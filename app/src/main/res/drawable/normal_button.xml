@@ -1,0 +1,5 @@
+<!-- res/drawable/button_sign_in.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#A1D085"/> <!-- Defineix el color de fons -->
+    <corners android:radius="15dp"/> <!-- Defineix les cantonades arrodonides -->
+</shape>
