@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.devicetrack.databinding.ActivityLoginBinding
 import com.example.devicetrack.ui.forgotpassword.ForgotPasswordActivity
+import com.example.devicetrack.MainActivity
 import com.example.devicetrack.ui.register.RegisterActivity
 
 class LoginActivity : AppCompatActivity() {
@@ -52,5 +53,9 @@ class LoginActivity : AppCompatActivity() {
 
         // Aquí pots afegir la lògica per iniciar sessió l'usuari, com ara una crida a la API
         Toast.makeText(this, "User Logged In Successfully", Toast.LENGTH_SHORT).show()
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
+
     }
 }
