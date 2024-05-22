@@ -53,8 +53,7 @@ class LoginActivity : AppCompatActivity() {
 
         // Aquí pots afegir la lògica per iniciar sessió l'usuari, com ara una crida a la API
         Toast.makeText(this, "User Logged In Successfully", Toast.LENGTH_SHORT).show()
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
+        startActivity(Intent(this, MainActivity::class.java))
         finish()
 
     }
