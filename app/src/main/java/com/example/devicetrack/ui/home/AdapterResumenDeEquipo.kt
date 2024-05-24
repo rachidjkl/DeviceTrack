@@ -6,8 +6,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.devicetrack.R
+import com.example.devicetrack.data.model.Dispositivos
 
-class AdapterResumenDeEquipo (private val itemList: List<Item>) : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
+class AdapterResumenDeEquipo(private val dispositivoList: List<Dispositivos>) : RecyclerView.Adapter<AdapterResumenDeEquipo.ItemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.card_dispositivo, parent, false)
@@ -15,11 +16,11 @@ class AdapterResumenDeEquipo (private val itemList: List<Item>) : RecyclerView.A
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        val item = itemList[position]
-        holder.titleTextView.text = item.title
+        val dispositivo = dispositivoList[position]
+        holder.titleTextView.text = dispositivo.nombre
     }
 
-    override fun getItemCount() = itemList.size
+    override fun getItemCount() = dispositivoList.size
 
     class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val titleTextView: TextView = itemView.findViewById(R.id.titulo)
