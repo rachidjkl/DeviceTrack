@@ -32,6 +32,7 @@
 
         <Button
             style="@style/MaterialAlertDialog.MaterialComponents.Title.Icon"
+            android:id="@+id/BtnDetails"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:background="@drawable/button_ver_todo"

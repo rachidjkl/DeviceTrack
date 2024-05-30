@@ -4,13 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.devicetrack.R
 import com.example.devicetrack.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -54,11 +54,13 @@ class HomeFragment : Fragment() {
             }
         })
 
+        //val root: View = binding.root
 
-        val root: View = binding.root
+        binding.BtnDetails.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
+        }
 
-
-        return root
+        return binding.root
     }
 
     override fun onDestroyView() {
