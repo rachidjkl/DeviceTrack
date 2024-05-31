@@ -4,9 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.devicetrack.R
 import com.example.devicetrack.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -22,14 +26,41 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+        val homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
 
+        homeViewModel.onCreate()
+        homeViewModel.dispositivoModel.observe(viewLifecycleOwner, Observer { listDispositivos ->
+            val adapter = AdapterResumenDeEquipo(requireContext(),listDispositivos!!)
+            binding.rvResumenEquipos.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            binding.rvResumenEquipos.adapter = adapter
+        })
+        homeViewModel.isLoading.observe(viewLifecycleOwner, Observer {
+            binding.progressBar.isVisible = it
+        })
 
-        return root
+        homeViewModel.dispositivoFavModel.observe(viewLifecycleOwner, Observer { listDispositivos ->
+            if (listDispositivos.isNullOrEmpty()){
+                binding.noFav.isVisible=true
+                binding.rvEqiposFav.isVisible=false
+
+            }else{
+                binding.noFav.isVisible=false
+                val adapter = AdapterResumenDeEquipo(requireContext(),listDispositivos!!)
+                binding.rvEqiposFav.isVisible=true
+                binding.rvEqiposFav.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+                binding.rvEqiposFav.adapter = adapter
+            }
+        })
+
+        //val root: View = binding.root
+
+        binding.BtnDetails.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
+        }
+
+        return binding.root
     }
 
     override fun onDestroyView() {
