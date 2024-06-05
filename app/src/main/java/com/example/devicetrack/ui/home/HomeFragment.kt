@@ -54,7 +54,9 @@ class HomeFragment : Fragment() {
             }
         })
 
-        //binding.verMasEquipos.click
+        binding.verMasEquipos.setOnClickListener{
+            findNavController().navigate(R.id.action_navigation_home_to_navigation_lista_dispositivos)
+        }
 
 
         //val root: View = binding.root

@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_homeFragment_to_profileFragment"
             app:destination="@id/navigation_profile" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_lista_dispositivos"
+            app:destination="@id/navigation_lista_dispositivos" />
     </fragment>
 
     <fragment
@@ -32,4 +35,10 @@
         android:name="com.example.devicetrack.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/navigation_lista_dispositivos"
+        android:name="com.example.devicetrack.ui.listaDispositivos.listaDispositivo"
+        android:label="Dispositivo"
+        tools:layout="@layout/fragment_lista_dispositivo" />
 </navigation>
