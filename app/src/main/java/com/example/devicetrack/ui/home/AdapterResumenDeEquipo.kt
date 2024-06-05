@@ -4,15 +4,12 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.os.bundleOf
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.devicetrack.R
-import com.example.devicetrack.data.model.Dispositivos
+import com.example.devicetrack.data.model.Dispositivo
 
-class AdapterResumenDeEquipo(private val context: Context, private val dispositivoList: List<Dispositivos>) : RecyclerView.Adapter<AdapterResumenDeEquipo.HomeViewHolder>() {
+class AdapterResumenDeEquipo(private val context: Context, private val dispositivoList: List<Dispositivo>) : RecyclerView.Adapter<AdapterResumenDeEquipo.HomeViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
         val inflater = LayoutInflater.from(context)
@@ -33,7 +30,7 @@ class AdapterResumenDeEquipo(private val context: Context, private val dispositi
         private val tituloTextView: TextView = itemView.findViewById(R.id.tituloCard)
 
 
-        fun bind(dispositivo: Dispositivos) {
+        fun bind(dispositivo: Dispositivo) {
             tituloTextView.text = dispositivo.nombre
 
         }
