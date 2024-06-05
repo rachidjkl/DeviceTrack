@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:id="@+id/toolBar"
-        android:layout_width="409dp"
+        android:layout_width="match_parent"
         android:layout_height="76dp"
         android:background="@color/pricipal"
         android:paddingLeft="6dp"
@@ -31,9 +31,10 @@
 
 
         <Button
-            style="@style/MaterialAlertDialog.MaterialComponents.Title.Icon"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:background="@drawable/button_ver_todo"
             android:text="Detalles"
             android:textColor="#666666"
@@ -63,6 +64,7 @@
             android:textStyle="bold" />
 
         <Button
+            android:id="@+id/verMasEquipos"
             style="@style/MaterialAlertDialog.MaterialComponents.Title.Icon"
             android:layout_width="wrap_content"
             android:layout_height="30dp"

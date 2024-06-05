@@ -1,6 +1,5 @@
-package com.example.devicetrack.ui.home
+package com.example.devicetrack.ui.listaDispositivos
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,8 +7,7 @@ import com.example.devicetrack.data.DispositivosRepository
 import com.example.devicetrack.data.model.Dispositivos
 import kotlinx.coroutines.launch
 
-class HomeViewModel : ViewModel() {
-
+class ListaDispositivoViewModel : ViewModel() {
     val dispositivoModel = MutableLiveData<List<Dispositivos>?>()
     val dispositivoFavModel = MutableLiveData<List<Dispositivos>?>()
     val isLoading = MutableLiveData<Boolean>()

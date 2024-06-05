@@ -54,6 +54,8 @@ class HomeFragment : Fragment() {
             }
         })
 
+        //binding.verMasEquipos.click
+
 
         val root: View = binding.root
 
