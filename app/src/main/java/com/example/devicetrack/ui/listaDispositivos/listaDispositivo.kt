@@ -8,11 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.devicetrack.R
 import com.example.devicetrack.databinding.FragmentHomeBinding
 import com.example.devicetrack.databinding.FragmentListaDispositivoBinding
 import com.example.devicetrack.ui.home.AdapterResumenDeEquipo
+import com.example.devicetrack.ui.home.HomeViewModel
 
 class listaDispositivo : Fragment() {
 
@@ -20,29 +23,29 @@ class listaDispositivo : Fragment() {
 
     private val binding get() = _binding!!
 
-    private val viewModel: ListaDispositivoViewModel by viewModels()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        // TODO: Use the ViewModel
-    }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        val viewModel = ViewModelProvider(this).get(ListaDispositivoViewModel::class.java)
         _binding = FragmentListaDispositivoBinding.inflate(inflater, container, false)
 
         viewModel.onCreate()
         viewModel.dispositivoModel.observe(viewLifecycleOwner, Observer { listDispositivos ->
             val adapter = AdapterListaDispositivo(requireContext(),listDispositivos!!)
-            binding.rvResumenEquipos.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            binding.rvResumenEquipos.layoutManager = GridLayoutManager(requireContext(), 2)
             binding.rvResumenEquipos.adapter = adapter
         })
         viewModel.isLoading.observe(viewLifecycleOwner, Observer {
             //binding.progressBar.isVisible = it
         })
-        return inflater.inflate(R.layout.fragment_lista_dispositivo, container, false)
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

@@ -5,7 +5,7 @@ import retrofit2.Response
 import retrofit2.http.GET
 
 interface ApiClient {
-    @GET("/dispositivos")
+    @GET("/dispositivos/usuario/1")
     suspend fun getAllDispositivos(): Response<List<Dispositivo>>
 
     @GET("/dispositivos/favoritos/1")
