@@ -41,6 +41,11 @@ class listaDispositivo : Fragment() {
         viewModel.isLoading.observe(viewLifecycleOwner, Observer {
             //binding.progressBar.isVisible = it
         })
+
+        binding.btnBack.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
+
         return binding.root
     }
 

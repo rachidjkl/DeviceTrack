@@ -31,10 +31,16 @@ class AdapterListaDispositivo(private val context: Context, private val disposit
 
     inner class HomeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val tituloTextView: TextView = itemView.findViewById(R.id.tituloCard)
+        private val btnFav: ImageView = itemView.findViewById(R.id.icFavorito)
 
 
         fun bind(dispositivo: Dispositivo) {
             tituloTextView.text = dispositivo.nombre
+            if (dispositivo.favorito == 0){
+                btnFav.setImageResource(R.drawable.favorite_border)
+            }else{
+                btnFav.setImageResource(R.drawable.favorite)
+            }
 
         }
     }
