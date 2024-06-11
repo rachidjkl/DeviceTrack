@@ -26,21 +26,20 @@
             android:text="Nombre"
             android:textSize="20sp"
             android:textStyle="bold"
+            android:textColor="@color/black"
             android:layout_gravity="center" />
 
 
 
-        <Button
-            style="@style/MaterialAlertDialog.MaterialComponents.Title.Icon"
+        <ImageView
             android:id="@+id/BtnDetails"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_height="50dp"
             android:layout_gravity="center"
             android:gravity="center"
-            android:background="@drawable/button_ver_todo"
-            android:text="Detalles"
-            android:textColor="#666666"
-            android:textSize="9sp" />
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_user" />
     </LinearLayout>
 
 
