@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.devicetrack.R
@@ -44,6 +45,10 @@ class listaDispositivo : Fragment() {
 
         binding.btnBack.setOnClickListener {
             requireActivity().supportFragmentManager.popBackStack()
+        }
+
+        binding.dispoAdd.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_lista_dispositivos_to_navigation_anyadir_dispositivo)
         }
 
         return binding.root

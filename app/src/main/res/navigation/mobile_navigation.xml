@@ -40,5 +40,15 @@
         android:id="@+id/navigation_lista_dispositivos"
         android:name="com.example.devicetrack.ui.listaDispositivos.listaDispositivo"
         android:label="Dispositivo"
-        tools:layout="@layout/fragment_lista_dispositivo" />
+        tools:layout="@layout/fragment_lista_dispositivo" >
+        <action
+            android:id="@+id/action_navigation_lista_dispositivos_to_navigation_anyadir_dispositivo"
+            app:destination="@id/navigation_anyadir_dispositivo" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_anyadir_dispositivo"
+        android:name="com.example.devicetrack.ui.listaDispositivos.añadirDispositivos.AnyadirDispositivo"
+        android:label="Dispositivo"
+        tools:layout="@layout/fragment_anyadir_dispositivo" />
 </navigation>
