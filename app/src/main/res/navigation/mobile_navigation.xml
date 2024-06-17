@@ -32,4 +32,6 @@
         android:name="com.example.devicetrack.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+
+
 </navigation>
