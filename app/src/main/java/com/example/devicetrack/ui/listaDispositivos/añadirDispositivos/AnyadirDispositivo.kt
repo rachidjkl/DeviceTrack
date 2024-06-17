@@ -6,9 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.devicetrack.R
+import com.example.devicetrack.databinding.FragmentAnyadirDispositivoBinding
+import com.example.devicetrack.databinding.FragmentListaDispositivoBinding
 
 
 class AnyadirDispositivo : Fragment() {
+
+    private var _binding: FragmentAnyadirDispositivoBinding? = null
+
+    private val binding get() = _binding!!
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,7 +26,10 @@ class AnyadirDispositivo : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_anyadir_dispositivo, container, false)
+        _binding = FragmentAnyadirDispositivoBinding.inflate(inflater, container, false)
+        binding.btnBack.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
+        return binding.root
     }
 }
