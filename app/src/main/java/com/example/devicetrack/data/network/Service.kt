@@ -2,6 +2,7 @@ package com.example.devicetrack.data.network
 
 import com.example.devicetrack.core.RetrofitHelper
 import com.example.devicetrack.data.model.Dispositivo
+import com.example.devicetrack.data.model.Usuario
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -20,6 +21,13 @@ class Service {
         return withContext(Dispatchers.IO) {
             val response = retrofit.create(ApiClient::class.java).getAllDispositivosFav()
             response.body() ?: emptyList()
+        }
+    }
+
+    suspend fun getUsuario(): Usuario? {
+        return withContext(Dispatchers.IO) {
+            val response = retrofit.create(ApiClient::class.java).getUserProfile()
+            response.body()
         }
     }
 }
