@@ -57,7 +57,6 @@ class DetalleEquipoFragment : Fragment() {
 
         dialogBinding.btnConfirm.setOnClickListener {
             val comment = dialogBinding.etComment.text.toString()
-            // Aquí puedes manejar el comentario ingresado
             dialog.dismiss()
         }
 
