@@ -7,8 +7,8 @@ class DispositivosRepository {
 
     private val api = Service()
 
-    suspend fun getAllDispositivos():List<Dispositivo>{
-        return api.getDispositivos()
+    suspend fun getAllDispositivos(idUser:String):List<Dispositivo>{
+        return api.getDispositivos(idUser)
     }
 
     suspend fun getAllDispositivosFav():List<Dispositivo>{

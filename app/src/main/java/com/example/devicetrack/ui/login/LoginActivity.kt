@@ -1,45 +1,52 @@
 package com.example.devicetrack.ui.login
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.example.devicetrack.databinding.ActivityLoginBinding
 import com.example.devicetrack.ui.forgotpassword.ForgotPasswordActivity
 import com.example.devicetrack.MainActivity
+import com.example.devicetrack.data.UsuariosRepositorio
+import com.example.devicetrack.data.model.Usuario
 import com.example.devicetrack.ui.register.RegisterActivity
+import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
+    val usuarioRepo = UsuariosRepositorio()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Configurar el botó de login
+        // Configurar el botón de login
         binding.btnLogin.setOnClickListener {
             loginUser()
         }
 
-        // Configurar el TextView per anar a la pantalla de registre
+        // Configurar el TextView para ir a la pantalla de registro
         binding.tvRegister.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
 
-        // Configurar el botó de contrasenya oblidada
+        // Configurar el botón de contraseña olvidada
         binding.btnForgotPassword.setOnClickListener {
-            // Aquí pots afegir la funcionalitat per recuperar la contrasenya
             startActivity(Intent(this, ForgotPasswordActivity::class.java))
         }
     }
 
     private fun loginUser() {
-        val email = binding.email.editText?.text.toString().trim()
+        val emailOrNumber = binding.email.editText?.text.toString().trim()
         val password = binding.password.editText?.text.toString().trim()
 
-        if (email.isEmpty()) {
+        if (emailOrNumber.isEmpty()) {
             binding.email.error = "Please enter email or phone number"
             binding.email.requestFocus()
             return
@@ -51,10 +58,31 @@ class LoginActivity : AppCompatActivity() {
             return
         }
 
-        // Aquí pots afegir la lògica per iniciar sessió l'usuari, com ara una crida a la API
-        Toast.makeText(this, "User Logged In Successfully", Toast.LENGTH_SHORT).show()
-        startActivity(Intent(this, MainActivity::class.java))
-        finish()
+        // Lanzar una coroutine para llamar a authenticate cuando se hace clic en el botón
+        lifecycleScope.launch {
+            val isAuthenticated : List<Usuario> = authenticate(emailOrNumber, password)
+            if (isAuthenticated.isNotEmpty()) {
+                saveUserLogin(isAuthenticated[0].id_usuario.toString())
+                Toast.makeText(this@LoginActivity, "Login exitoso", Toast.LENGTH_SHORT).show()
+                // Redirigir a la siguiente actividad
+                startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                finish()
+            } else {
+                Toast.makeText(this@LoginActivity, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
 
+    private suspend fun authenticate(username: String, password: String): List<Usuario> {
+        val user = usuarioRepo.getUsuarioLogin(username, password)
+        Log.d("Auth", "User: $user")
+        return user
+    }
+
+    private fun saveUserLogin(idUser: String) {
+        val sharedPreferences: SharedPreferences = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("idUser", idUser)
+        editor.apply()
     }
 }

@@ -5,7 +5,7 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
 data class Usuario(
-    @SerializedName("Id_usuario") var Id_usuario: Int,
+    @SerializedName("id_usuario") var id_usuario: Int,
     @SerializedName("nombre") var nombre: String,
     @SerializedName("telefono") var telefono: Int,
     @SerializedName("email") var email: String,
@@ -21,7 +21,7 @@ data class Usuario(
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeInt(Id_usuario)
+        parcel.writeInt(id_usuario)
         parcel.writeString(nombre)
         parcel.writeInt(telefono)
         parcel.writeString(email)

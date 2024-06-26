@@ -33,7 +33,7 @@ class listaDispositivo : Fragment() {
         val viewModel = ViewModelProvider(this).get(ListaDispositivoViewModel::class.java)
         _binding = FragmentListaDispositivoBinding.inflate(inflater, container, false)
 
-        viewModel.onCreate()
+        viewModel.onCreate(requireContext())
         viewModel.dispositivoModel.observe(viewLifecycleOwner, Observer { listDispositivos ->
             val adapter = AdapterListaDispositivo(requireContext(),listDispositivos!!)
             binding.rvResumenEquipos.layoutManager = GridLayoutManager(requireContext(), 2)

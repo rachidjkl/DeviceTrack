@@ -1,5 +1,7 @@
 package com.example.devicetrack.ui.home
 
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -14,11 +16,13 @@ class HomeViewModel : ViewModel() {
     val isLoading = MutableLiveData<Boolean>()
     val dispositivosRepo = DispositivosRepository()
 
-    fun onCreate() {
+    fun onCreate(context : Context) {
         viewModelScope.launch {
+            val sharedPreferences: SharedPreferences = context.getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
+            val idUser = sharedPreferences.getString("idUser", null).toString()
             isLoading.postValue(true)
             var result = emptyList<Dispositivo>()
-            result = dispositivosRepo.getAllDispositivos()
+            result = dispositivosRepo.getAllDispositivos(idUser)
 
 
             if(!result.isNullOrEmpty()){
