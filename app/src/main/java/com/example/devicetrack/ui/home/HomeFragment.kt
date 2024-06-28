@@ -1,6 +1,8 @@
 package com.example.devicetrack.ui.home
 
+import Dispositivo
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +13,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.devicetrack.R
-import com.example.devicetrack.data.model.Dispositivo
 import com.example.devicetrack.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() , AdapterResumenDeEquipo.OnItemClickListener{
@@ -26,6 +27,7 @@ class HomeFragment : Fragment() , AdapterResumenDeEquipo.OnItemClickListener{
         val bundle = Bundle().apply {
            putParcelable("dispositivo", dispositivo)
         }
+        Log.d("Auth", "User: $bundle")
         findNavController().navigate(R.id.action_navigation_home_to_navigation_detalles_editar_equipo, bundle)
 
     }

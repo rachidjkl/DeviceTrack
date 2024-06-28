@@ -1,6 +1,6 @@
 package com.example.devicetrack.data.network
 
-import com.example.devicetrack.data.model.Dispositivo
+import Dispositivo
 import com.example.devicetrack.data.model.Usuario
 import retrofit2.Response
 import retrofit2.http.GET

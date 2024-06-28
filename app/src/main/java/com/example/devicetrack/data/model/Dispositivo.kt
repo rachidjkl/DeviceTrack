@@ -1,5 +1,3 @@
-package com.example.devicetrack.data.model
-
 import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
@@ -8,17 +6,17 @@ data class Dispositivo(
     @SerializedName("Id_dispositivo") var Id_dispositivo: Int,
     @SerializedName("numero_serie") var numero_serie: String,
     @SerializedName("nombre") var nombre: String,
-    @SerializedName("imagen") var imagen: String,
+    @SerializedName("imagen") var imagen: String?,
     @SerializedName("favorito") var favorito: Int,
     @SerializedName("conexion") var conexion: Int
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
-        parcel.readInt() ?: 0,
+        parcel.readInt(),
         parcel.readString() ?: "",
         parcel.readString() ?: "",
-        parcel.readString() ?: "",
-        parcel.readInt() ?: 0,
-        parcel.readInt() ?: 0,
+        parcel.readNullableString(),
+        parcel.readInt(),
+        parcel.readInt()
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -43,4 +41,13 @@ data class Dispositivo(
             return arrayOfNulls(size)
         }
     }
+}
+
+// Extension functions to handle nullable types in Parcel
+private fun Parcel.readNullableString(): String? {
+    return if (readInt() != 0) readString() else null
+}
+
+private fun Parcel.readIntOrNull(): Int? {
+    return if (readInt() != 0) readInt() else null
 }

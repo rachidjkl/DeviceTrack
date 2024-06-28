@@ -1,6 +1,6 @@
 package com.example.devicetrack.data
 
-import com.example.devicetrack.data.model.Dispositivo
+import Dispositivo
 import com.example.devicetrack.data.network.Service
 
 class DispositivosRepository {

@@ -1,13 +1,14 @@
 package com.example.devicetrack.ui.home
 
+import Dispositivo
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.devicetrack.R
-import com.example.devicetrack.data.model.Dispositivo
 
 class AdapterResumenDeEquipo(
     private val context: Context,
@@ -41,7 +42,9 @@ class AdapterResumenDeEquipo(
             tituloTextView.text = dispositivo.nombre
 
             // Establece el OnClickListener en el itemView
+
             itemView.setOnClickListener {
+                Log.d("Auth", "User: $dispositivo")
                 clickListener.onItemClick(dispositivo)
             }
         }

@@ -1,12 +1,12 @@
 package com.example.devicetrack.ui.listaDispositivos
 
+import Dispositivo
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.devicetrack.data.DispositivosRepository
-import com.example.devicetrack.data.model.Dispositivo
 import kotlinx.coroutines.launch
 
 class ListaDispositivoViewModel : ViewModel() {

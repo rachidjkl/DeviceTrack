@@ -138,19 +138,17 @@
                     android:layout_width="388dp"
                     android:layout_height="233dp"
                     android:adjustViewBounds="true"
-                    android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/impresora_placeholder"
+                    android:background="@drawable/no_fav"
                     android:gravity="center"
                     android:orientation="vertical"
-                    android:background="@drawable/no_fav"
+                    android:scaleType="fitCenter"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.526"
+                    app:layout_constraintHorizontal_bias="0.529"
                     app:layout_constraintStart_toStartOf="@+id/resum"
                     app:layout_constraintTop_toBottomOf="@+id/resum"
-                    app:layout_constraintVertical_bias="0.134">
-
-
+                    app:layout_constraintVertical_bias="0.023"
+                    app:srcCompat="@drawable/impresora_placeholder">
 
 
                 </ImageView>
@@ -167,7 +165,7 @@
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/seleccionaImg"
-                    app:layout_constraintVertical_bias="0.149">
+                    app:layout_constraintVertical_bias="0.046">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -237,10 +235,10 @@
                     android:textSize="20dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.043"
+                    app:layout_constraintHorizontal_bias="0.046"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-                    app:layout_constraintVertical_bias="0.138" />
+                    app:layout_constraintVertical_bias="0.066" />
 
                 <LinearLayout
                     android:id="@+id/linearLayout3"

@@ -1,7 +1,7 @@
 package com.example.devicetrack.data.network
 
+import Dispositivo
 import com.example.devicetrack.core.RetrofitHelper
-import com.example.devicetrack.data.model.Dispositivo
 import com.example.devicetrack.data.model.Usuario
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

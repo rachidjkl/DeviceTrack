@@ -1,5 +1,6 @@
 package com.example.devicetrack.ui.listaDispositivos
 
+import Dispositivo
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +11,6 @@ import androidx.core.os.bundleOf
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.devicetrack.R
-import com.example.devicetrack.data.model.Dispositivo
 
 class AdapterListaDispositivo(private val context: Context, private val dispositivoList: List<Dispositivo>) : RecyclerView.Adapter<AdapterListaDispositivo.HomeViewHolder>() {
 
