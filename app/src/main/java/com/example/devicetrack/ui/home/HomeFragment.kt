@@ -38,7 +38,7 @@ class HomeFragment : Fragment() , AdapterResumenDeEquipo.OnItemClickListener{
 
         homeViewModel.onCreate(requireContext())
         homeViewModel.dispositivoModel.observe(viewLifecycleOwner, Observer { listDispositivos ->
-            val adapter = AdapterResumenDeEquipo(requireContext(),listDispositivos!!)
+            val adapter = AdapterResumenDeEquipo(requireContext(),listDispositivos!!, this)
             binding.rvResumenEquipos.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             binding.rvResumenEquipos.adapter = adapter
         })
@@ -53,7 +53,7 @@ class HomeFragment : Fragment() , AdapterResumenDeEquipo.OnItemClickListener{
 
             }else{
                 binding.noFav.isVisible=false
-                val adapter = AdapterResumenDeEquipo(requireContext(),listDispositivos!!)
+                val adapter = AdapterResumenDeEquipo(requireContext(),listDispositivos!!, this)
                 binding.rvEqiposFav.isVisible=true
                 binding.rvEqiposFav.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
                 binding.rvEqiposFav.adapter = adapter
