@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_navigation_home_to_navigation_lista_dispositivos"
             app:destination="@id/navigation_lista_dispositivos" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_detalles_editar_equipo"
+            app:destination="@id/navigation_detalles_editar_equipo" />
     </fragment>
 
     <fragment
@@ -44,6 +47,9 @@
         <action
             android:id="@+id/action_navigation_lista_dispositivos_to_navigation_anyadir_dispositivo"
             app:destination="@id/navigation_anyadir_dispositivo" />
+        <action
+            android:id="@+id/action_navigation_lista_dispositivos_to_navigation_detalles_editar_equipo"
+            app:destination="@id/navigation_detalles_editar_equipo" />
     </fragment>
 
     <fragment
@@ -54,5 +60,12 @@
         <action
             android:id="@+id/action_navigation_anyadir_dispositivo_to_navigation_lista_dispositivos"
             app:destination="@id/navigation_lista_dispositivos" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_detalles_editar_equipo"
+        android:name="com.example.devicetrack.ui.listaDispositivos.detallesEditarDispisitivo.DetallesEditarDispositivos"
+        android:label="Dispositivo"
+        tools:layout="@layout/fragment_detalles_editar_dispositivos" >
     </fragment>
 </navigation>

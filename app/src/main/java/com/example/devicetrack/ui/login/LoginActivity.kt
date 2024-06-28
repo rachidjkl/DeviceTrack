@@ -74,8 +74,16 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private suspend fun authenticate(username: String, password: String): List<Usuario> {
-        val user = usuarioRepo.getUsuarioLogin(username, password)
-        Log.d("Auth", "User: $user")
+        //val user = usuarioRepo.getUsuarioLogin(username, password)
+        //Log.d("Auth", "User: $user")
+        val userr:Usuario =  Usuario(
+            id_usuario = 1,
+            nombre = "Juan Perez",
+            telefono = 123456789,
+            email = "juan.perez@example.com",
+            contrasenya = "password123"
+        )
+        val user:List<Usuario> = listOf(userr)
         return user
     }
 
