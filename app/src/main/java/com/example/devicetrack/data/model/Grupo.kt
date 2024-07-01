@@ -5,21 +5,18 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
 data class Grupo(
-    @SerializedName("Id_grupo") var Id_grupo: Int,
-    @SerializedName("nombre") var nombre:String,
-    @SerializedName("usuario") var usuario: Int
+    @SerializedName("grupo") var grupo: Int,
+    @SerializedName("nombre") var nombre:String
 ): Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readInt() ?:0,
-        parcel.readString() ?: "",
-        parcel.readInt() ?:0,
+        parcel.readString() ?: ""
     ) {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeInt(Id_grupo)
+        parcel.writeInt(grupo)
         parcel.writeString(nombre)
-        parcel.writeInt(usuario)
     }
 
     override fun describeContents(): Int {

@@ -1,6 +1,7 @@
 package com.example.devicetrack.data.network
 
 import Dispositivo
+import com.example.devicetrack.data.model.Grupo
 import com.example.devicetrack.data.model.Usuario
 import retrofit2.Response
 import retrofit2.http.GET
@@ -20,4 +21,8 @@ interface ApiClient {
 
     @POST("/dispositivos/favoritos")
     suspend fun PostAllDispositivosFav(): Response<List<Dispositivo>>
+
+
+    @GET("/grupo_disp/{id_dispositivo}")
+    suspend fun getAllGrupDispositivos(@Path("id_dispositivo")  id_dispositivo:String): Response<List<Grupo>>
 }

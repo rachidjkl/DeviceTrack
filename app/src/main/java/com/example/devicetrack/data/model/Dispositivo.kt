@@ -3,12 +3,14 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
 data class Dispositivo(
-    @SerializedName("Id_dispositivo") var Id_dispositivo: Int,
+    @SerializedName("id_dispositivo") var Id_dispositivo: Int,
     @SerializedName("numero_serie") var numero_serie: String,
     @SerializedName("nombre") var nombre: String,
     @SerializedName("imagen") var imagen: String?,
     @SerializedName("favorito") var favorito: Int,
-    @SerializedName("conexion") var conexion: Int
+    @SerializedName("conexion") var conexion: Int,
+    @SerializedName("codigo_conexion") var codigo_conexion: Int
+
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
@@ -16,6 +18,7 @@ data class Dispositivo(
         parcel.readString() ?: "",
         parcel.readNullableString(),
         parcel.readInt(),
+        parcel.readInt() ,
         parcel.readInt()
     )
 
@@ -26,6 +29,7 @@ data class Dispositivo(
         parcel.writeString(imagen)
         parcel.writeInt(favorito)
         parcel.writeInt(conexion)
+        parcel.writeInt(codigo_conexion)
     }
 
     override fun describeContents(): Int {
