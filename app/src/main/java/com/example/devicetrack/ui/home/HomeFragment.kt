@@ -70,7 +70,6 @@ class HomeFragment : Fragment() , AdapterResumenDeEquipo.OnItemClickListener{
         }
 
 
-        //val root: View = binding.root
 
 
         binding.BtnDetails.setOnClickListener {
