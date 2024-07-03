@@ -4,6 +4,7 @@ import Dispositivo
 import com.example.devicetrack.core.RetrofitHelper
 import com.example.devicetrack.data.model.Grupo
 import com.example.devicetrack.data.model.Usuario
+import com.example.devicetrack.data.model.Usuario_dispositivo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -18,9 +19,9 @@ class Service {
         }
     }
 
-    suspend fun getDispositivosFav(): List<Dispositivo> {
+    suspend fun getDispositivosFav(idUser : String): List<Dispositivo> {
         return withContext(Dispatchers.IO) {
-            val response = retrofit.create(ApiClient::class.java).getAllDispositivosFav()
+            val response = retrofit.create(ApiClient::class.java).getAllDispositivosFav(idUser)
             response.body() ?: emptyList()
         }
     }
@@ -35,6 +36,25 @@ class Service {
     suspend fun getAllGrupDispositivos(idDispositivo: String): List<Grupo> {
         return withContext(Dispatchers.IO) {
             val response = retrofit.create(ApiClient::class.java).getAllGrupDispositivos(idDispositivo)
+            response.body() ?: emptyList()
+        }
+    }
+
+    suspend fun postDispositivo(Dispositivo:Dispositivo){
+        withContext(Dispatchers.IO) {
+            retrofit.create(ApiClient::class.java).createDispositivo(Dispositivo)
+        }
+    }
+
+    suspend fun createUsuario_dispositivo(Usuario_dispositivo: Usuario_dispositivo){
+        withContext(Dispatchers.IO) {
+            retrofit.create(ApiClient::class.java).createUsuario_dispositivo(Usuario_dispositivo)
+        }
+    }
+
+    suspend fun getDispositivoNumSerie(numSerie: String): List<Dispositivo> {
+        return withContext(Dispatchers.IO) {
+            val response = retrofit.create(ApiClient::class.java).getDispositivoNumSerie(numSerie)
             response.body() ?: emptyList()
         }
     }
