@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_navigation_home_to_navigation_detalles_editar_equipo"
             app:destination="@id/navigation_detalles_editar_equipo" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_detalle_equipo_fragment"
+            app:destination="@id/navigation_detalle_equipo_fragment" />
     </fragment>
 
     <fragment

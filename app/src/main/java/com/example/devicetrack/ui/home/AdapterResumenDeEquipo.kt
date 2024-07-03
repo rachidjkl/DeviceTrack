@@ -18,6 +18,7 @@ class AdapterResumenDeEquipo(
 
     interface OnItemClickListener {
         fun onItemClick(dispositivo: Dispositivo)
+        fun onItemLongClick(dispositivo: Dispositivo)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
@@ -42,10 +43,16 @@ class AdapterResumenDeEquipo(
             tituloTextView.text = dispositivo.nombre
 
             // Establece el OnClickListener en el itemView
-
             itemView.setOnClickListener {
-                Log.d("Auth", "User: $dispositivo")
+                Log.d("Auth", "Clicked on: $dispositivo")
                 clickListener.onItemClick(dispositivo)
+            }
+
+            // Establece el OnLongClickListener en el itemView
+            itemView.setOnLongClickListener {
+                Log.d("Auth", "Long Clicked on: $dispositivo")
+                clickListener.onItemLongClick(dispositivo)
+                true
             }
         }
     }

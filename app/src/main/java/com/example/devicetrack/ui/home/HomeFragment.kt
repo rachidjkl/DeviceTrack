@@ -15,21 +15,26 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.devicetrack.R
 import com.example.devicetrack.databinding.FragmentHomeBinding
 
-class HomeFragment : Fragment() , AdapterResumenDeEquipo.OnItemClickListener{
+class HomeFragment : Fragment(), AdapterResumenDeEquipo.OnItemClickListener {
 
     private var _binding: FragmentHomeBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+    // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
 
     override fun onItemClick(dispositivo: Dispositivo) {
         val bundle = Bundle().apply {
-           putParcelable("dispositivo", dispositivo)
+            putParcelable("dispositivo", dispositivo)
         }
-        Log.d("Auth", "User: $bundle")
-        findNavController().navigate(R.id.action_navigation_home_to_navigation_detalles_editar_equipo, bundle)
+        findNavController().navigate(R.id.action_navigation_home_to_navigation_detalle_equipo_fragment,bundle)
 
+    }
+
+    override fun onItemLongClick(dispositivo: Dispositivo) {
+        val bundle = Bundle().apply {
+            putParcelable("dispositivo", dispositivo)
+        }
+        findNavController().navigate(R.id.action_navigation_home_to_navigation_detalles_editar_equipo, bundle)
     }
 
     override fun onCreateView(
@@ -43,7 +48,7 @@ class HomeFragment : Fragment() , AdapterResumenDeEquipo.OnItemClickListener{
 
         homeViewModel.onCreate(requireContext())
         homeViewModel.dispositivoModel.observe(viewLifecycleOwner, Observer { listDispositivos ->
-            val adapter = AdapterResumenDeEquipo(requireContext(),listDispositivos!!, this)
+            val adapter = AdapterResumenDeEquipo(requireContext(), listDispositivos!!, this)
             binding.rvResumenEquipos.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             binding.rvResumenEquipos.adapter = adapter
         })
@@ -52,25 +57,25 @@ class HomeFragment : Fragment() , AdapterResumenDeEquipo.OnItemClickListener{
         })
 
         homeViewModel.dispositivoFavModel.observe(viewLifecycleOwner, Observer { listDispositivos ->
-            if (listDispositivos.isNullOrEmpty()){
-                binding.noFav.isVisible=true
-                binding.rvEqiposFav.isVisible=false
-
-            }else{
-                binding.noFav.isVisible=false
-                val adapter = AdapterResumenDeEquipo(requireContext(),listDispositivos!!, this)
-                binding.rvEqiposFav.isVisible=true
+            if (listDispositivos.isNullOrEmpty()) {
+                binding.noFav.isVisible = true
+                binding.rvEqiposFav.isVisible = false
+            } else {
+                binding.noFav.isVisible = false
+                val adapter = AdapterResumenDeEquipo(requireContext(), listDispositivos!!, this)
+                binding.rvEqiposFav.isVisible = true
                 binding.rvEqiposFav.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
                 binding.rvEqiposFav.adapter = adapter
             }
         })
 
-        binding.verMasEquipos.setOnClickListener{
+        binding.verMasEquipos.setOnClickListener {
             findNavController().navigate(R.id.action_navigation_home_to_navigation_lista_dispositivos)
         }
 
-
-
+        binding.verMasEquipos2.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_home_to_navigation_lista_dispositivos)
+        }
 
         binding.BtnDetails.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
