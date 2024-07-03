@@ -1,4 +1,4 @@
-package com.example.devicetrack.ui.detalleequipo
+package com.example.devicetrack
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -57,6 +57,7 @@ class DetalleEquipoFragment : Fragment() {
 
         dialogBinding.btnConfirm.setOnClickListener {
             val comment = dialogBinding.etComment.text.toString()
+            // Aquí puedes manejar el comentario ingresado
             dialog.dismiss()
         }
 
