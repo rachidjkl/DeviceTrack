@@ -28,16 +28,16 @@
         tools:layout="@layout/fragment_profile" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.devicetrack.ui.dashboard.DashboardFragment"
+        android:id="@+id/navigation_equipos"
+        android:name="com.example.devicetrack.ui.listaDispositivos.listaDispositivo"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_lista_dispositivo" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.devicetrack.ui.notifications.NotificationsFragment"
+        android:id="@+id/navigation_grupos"
+        android:name="com.example.devicetrack.ui.grupos.grupos"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_grupos" />
 
     <fragment
         android:id="@+id/navigation_lista_dispositivos"
@@ -50,6 +50,9 @@
         <action
             android:id="@+id/action_navigation_lista_dispositivos_to_navigation_detalles_editar_equipo"
             app:destination="@id/navigation_detalles_editar_equipo" />
+        <action
+            android:id="@+id/action_navigation_lista_dispositivos_to_navigation_detalle_equipo_fragment"
+            app:destination="@id/navigation_detalle_equipo_fragment" />
     </fragment>
 
     <fragment
@@ -67,5 +70,34 @@
         android:name="com.example.devicetrack.ui.listaDispositivos.detallesEditarDispisitivo.DetallesEditarDispositivos"
         android:label="Dispositivo"
         tools:layout="@layout/fragment_detalles_editar_dispositivos" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_detalle_equipo_fragment"
+        android:name="com.example.devicetrack.ui.detalleequipo.DetalleEquipoFragment"
+        android:label="Equipo"
+        tools:layout="@layout/fragment_detalle_equipo" >
+        <action
+            android:id="@+id/action_navigation_detalle_equipo_fragment_to_navigation_alerta_fragment"
+            app:destination="@id/navigation_alerta_fragment" />
+        <action
+            android:id="@+id/action_navigation_detalle_equipo_fragment_pop"
+            app:popUpTo="@id/navigation_detalle_equipo_fragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_navigation_detalle_equipo_fragment_to_navigation_limiezap_fragment"
+            app:destination="@id/navigation_limiezap_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_alerta_fragment"
+        android:name="com.example.devicetrack.HistorialAlertaFragment"
+        android:label="Alerta"
+        tools:layout="@layout/fragment_historial_alerta" >
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_limiezap_fragment"
+        android:name="com.example.devicetrack.HistorialLimpiezaFragment"
+        android:label="Limpieza"
+        tools:layout="@layout/fragment_historial_limpieza" >
     </fragment>
 </navigation>
