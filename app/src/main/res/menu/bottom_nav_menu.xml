@@ -7,12 +7,12 @@
         android:title="@string/title_home" />
 
     <item
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_equipos"
         android:icon="@drawable/engranaje"
         android:title="@string/title_dashboard" />
 
     <item
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_grupos"
         android:icon="@drawable/pruebasabdominales"
         android:title="@string/title_notifications" />
 
