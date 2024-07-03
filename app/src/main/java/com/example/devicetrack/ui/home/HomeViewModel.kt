@@ -30,11 +30,11 @@ class HomeViewModel : ViewModel() {
                 isLoading.postValue(false)
             }
             var result2 = emptyList<Dispositivo>()
-            //result2 = dispositivosRepo.getAllDispositivosFav()
+            result2 = dispositivosRepo.getAllDispositivosFav(idUser)
             dispositivoFavModel.postValue(result2)
 
 
-                dispositivoFavModel.postValue(result2)
+            dispositivoFavModel.postValue(result2)
 
         }
     }
