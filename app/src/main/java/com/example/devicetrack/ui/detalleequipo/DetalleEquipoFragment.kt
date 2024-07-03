@@ -1,4 +1,4 @@
-package com.example.devicetrack
+package com.example.devicetrack.ui.detalleequipo
 
 import android.app.AlertDialog
 import android.os.Bundle

@@ -79,6 +79,8 @@ public class LibrariesForLibs extends AbstractExternalDependencyFactory {
     public static class AndroidxLibraryAccessors extends SubDependencyFactory {
         private final AndroidxCoreLibraryAccessors laccForAndroidxCoreLibraryAccessors = new AndroidxCoreLibraryAccessors(owner);
         private final AndroidxEspressoLibraryAccessors laccForAndroidxEspressoLibraryAccessors = new AndroidxEspressoLibraryAccessors(owner);
+        private final AndroidxFragmentLibraryAccessors laccForAndroidxFragmentLibraryAccessors = new AndroidxFragmentLibraryAccessors(owner);
+        private final AndroidxLegacyLibraryAccessors laccForAndroidxLegacyLibraryAccessors = new AndroidxLegacyLibraryAccessors(owner);
         private final AndroidxLifecycleLibraryAccessors laccForAndroidxLifecycleLibraryAccessors = new AndroidxLifecycleLibraryAccessors(owner);
         private final AndroidxNavigationLibraryAccessors laccForAndroidxNavigationLibraryAccessors = new AndroidxNavigationLibraryAccessors(owner);
 
@@ -131,6 +133,20 @@ public class LibrariesForLibs extends AbstractExternalDependencyFactory {
         }
 
         /**
+         * Returns the group of libraries at androidx.fragment
+         */
+        public AndroidxFragmentLibraryAccessors getFragment() {
+            return laccForAndroidxFragmentLibraryAccessors;
+        }
+
+        /**
+         * Returns the group of libraries at androidx.legacy
+         */
+        public AndroidxLegacyLibraryAccessors getLegacy() {
+            return laccForAndroidxLegacyLibraryAccessors;
+        }
+
+        /**
          * Returns the group of libraries at androidx.lifecycle
          */
         public AndroidxLifecycleLibraryAccessors getLifecycle() {
@@ -170,6 +186,48 @@ public class LibrariesForLibs extends AbstractExternalDependencyFactory {
              */
             public Provider<MinimalExternalModuleDependency> getCore() {
                 return create("androidx.espresso.core");
+        }
+
+    }
+
+    public static class AndroidxFragmentLibraryAccessors extends SubDependencyFactory {
+
+        public AndroidxFragmentLibraryAccessors(AbstractExternalDependencyFactory owner) { super(owner); }
+
+            /**
+             * Creates a dependency provider for ktx (androidx.fragment:fragment-ktx)
+             * This dependency was declared in catalog libs.versions.toml
+             */
+            public Provider<MinimalExternalModuleDependency> getKtx() {
+                return create("androidx.fragment.ktx");
+        }
+
+    }
+
+    public static class AndroidxLegacyLibraryAccessors extends SubDependencyFactory {
+        private final AndroidxLegacySupportLibraryAccessors laccForAndroidxLegacySupportLibraryAccessors = new AndroidxLegacySupportLibraryAccessors(owner);
+
+        public AndroidxLegacyLibraryAccessors(AbstractExternalDependencyFactory owner) { super(owner); }
+
+        /**
+         * Returns the group of libraries at androidx.legacy.support
+         */
+        public AndroidxLegacySupportLibraryAccessors getSupport() {
+            return laccForAndroidxLegacySupportLibraryAccessors;
+        }
+
+    }
+
+    public static class AndroidxLegacySupportLibraryAccessors extends SubDependencyFactory {
+
+        public AndroidxLegacySupportLibraryAccessors(AbstractExternalDependencyFactory owner) { super(owner); }
+
+            /**
+             * Creates a dependency provider for v4 (androidx.legacy:legacy-support-v4)
+             * This dependency was declared in catalog libs.versions.toml
+             */
+            public Provider<MinimalExternalModuleDependency> getV4() {
+                return create("androidx.legacy.support.v4");
         }
 
     }
@@ -327,6 +385,14 @@ public class LibrariesForLibs extends AbstractExternalDependencyFactory {
             public Provider<String> getEspressoCore() { return getVersion("espressoCore"); }
 
             /**
+             * Returns the version associated to this alias: fragmentKtx (1.7.1)
+             * If the version is a rich version and that its not expressible as a
+             * single version string, then an empty string is returned.
+             * This version was declared in catalog libs.versions.toml
+             */
+            public Provider<String> getFragmentKtx() { return getVersion("fragmentKtx"); }
+
+            /**
              * Returns the version associated to this alias: junit (4.13.2)
              * If the version is a rich version and that its not expressible as a
              * single version string, then an empty string is returned.
@@ -349,6 +415,14 @@ public class LibrariesForLibs extends AbstractExternalDependencyFactory {
              * This version was declared in catalog libs.versions.toml
              */
             public Provider<String> getKotlin() { return getVersion("kotlin"); }
+
+            /**
+             * Returns the version associated to this alias: legacySupportV4 (1.0.0)
+             * If the version is a rich version and that its not expressible as a
+             * single version string, then an empty string is returned.
+             * This version was declared in catalog libs.versions.toml
+             */
+            public Provider<String> getLegacySupportV4() { return getVersion("legacySupportV4"); }
 
             /**
              * Returns the version associated to this alias: lifecycleLivedataKtx (2.7.0)

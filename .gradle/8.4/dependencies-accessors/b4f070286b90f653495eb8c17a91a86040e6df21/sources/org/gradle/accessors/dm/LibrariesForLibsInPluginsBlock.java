@@ -95,6 +95,8 @@ public class LibrariesForLibsInPluginsBlock extends AbstractExternalDependencyFa
     public static class AndroidxLibraryAccessors extends SubDependencyFactory {
         private final AndroidxCoreLibraryAccessors laccForAndroidxCoreLibraryAccessors = new AndroidxCoreLibraryAccessors(owner);
         private final AndroidxEspressoLibraryAccessors laccForAndroidxEspressoLibraryAccessors = new AndroidxEspressoLibraryAccessors(owner);
+        private final AndroidxFragmentLibraryAccessors laccForAndroidxFragmentLibraryAccessors = new AndroidxFragmentLibraryAccessors(owner);
+        private final AndroidxLegacyLibraryAccessors laccForAndroidxLegacyLibraryAccessors = new AndroidxLegacyLibraryAccessors(owner);
         private final AndroidxLifecycleLibraryAccessors laccForAndroidxLifecycleLibraryAccessors = new AndroidxLifecycleLibraryAccessors(owner);
         private final AndroidxNavigationLibraryAccessors laccForAndroidxNavigationLibraryAccessors = new AndroidxNavigationLibraryAccessors(owner);
 
@@ -165,6 +167,26 @@ public class LibrariesForLibsInPluginsBlock extends AbstractExternalDependencyFa
         }
 
         /**
+         * Returns the group of libraries at androidx.fragment
+         * @deprecated Will be removed in Gradle 9.0.
+         */
+        @Deprecated
+        public AndroidxFragmentLibraryAccessors getFragment() {
+            org.gradle.internal.deprecation.DeprecationLogger.deprecateBehaviour("Accessing libraries or bundles from version catalogs in the plugins block.").withAdvice("Only use versions or plugins from catalogs in the plugins block.").willBeRemovedInGradle9().withUpgradeGuideSection(8, "kotlin_dsl_deprecated_catalogs_plugins_block").nagUser();
+            return laccForAndroidxFragmentLibraryAccessors;
+        }
+
+        /**
+         * Returns the group of libraries at androidx.legacy
+         * @deprecated Will be removed in Gradle 9.0.
+         */
+        @Deprecated
+        public AndroidxLegacyLibraryAccessors getLegacy() {
+            org.gradle.internal.deprecation.DeprecationLogger.deprecateBehaviour("Accessing libraries or bundles from version catalogs in the plugins block.").withAdvice("Only use versions or plugins from catalogs in the plugins block.").willBeRemovedInGradle9().withUpgradeGuideSection(8, "kotlin_dsl_deprecated_catalogs_plugins_block").nagUser();
+            return laccForAndroidxLegacyLibraryAccessors;
+        }
+
+        /**
          * Returns the group of libraries at androidx.lifecycle
          * @deprecated Will be removed in Gradle 9.0.
          */
@@ -224,6 +246,69 @@ public class LibrariesForLibsInPluginsBlock extends AbstractExternalDependencyFa
             public Provider<MinimalExternalModuleDependency> getCore() {
             org.gradle.internal.deprecation.DeprecationLogger.deprecateBehaviour("Accessing libraries or bundles from version catalogs in the plugins block.").withAdvice("Only use versions or plugins from catalogs in the plugins block.").willBeRemovedInGradle9().withUpgradeGuideSection(8, "kotlin_dsl_deprecated_catalogs_plugins_block").nagUser();
                 return create("androidx.espresso.core");
+        }
+
+    }
+
+    /**
+     * @deprecated Will be removed in Gradle 9.0.
+     */
+    @Deprecated
+    public static class AndroidxFragmentLibraryAccessors extends SubDependencyFactory {
+
+        public AndroidxFragmentLibraryAccessors(AbstractExternalDependencyFactory owner) { super(owner); }
+
+            /**
+             * Creates a dependency provider for ktx (androidx.fragment:fragment-ktx)
+             * This dependency was declared in catalog libs.versions.toml
+         * @deprecated Will be removed in Gradle 9.0.
+             */
+        @Deprecated
+            public Provider<MinimalExternalModuleDependency> getKtx() {
+            org.gradle.internal.deprecation.DeprecationLogger.deprecateBehaviour("Accessing libraries or bundles from version catalogs in the plugins block.").withAdvice("Only use versions or plugins from catalogs in the plugins block.").willBeRemovedInGradle9().withUpgradeGuideSection(8, "kotlin_dsl_deprecated_catalogs_plugins_block").nagUser();
+                return create("androidx.fragment.ktx");
+        }
+
+    }
+
+    /**
+     * @deprecated Will be removed in Gradle 9.0.
+     */
+    @Deprecated
+    public static class AndroidxLegacyLibraryAccessors extends SubDependencyFactory {
+        private final AndroidxLegacySupportLibraryAccessors laccForAndroidxLegacySupportLibraryAccessors = new AndroidxLegacySupportLibraryAccessors(owner);
+
+        public AndroidxLegacyLibraryAccessors(AbstractExternalDependencyFactory owner) { super(owner); }
+
+        /**
+         * Returns the group of libraries at androidx.legacy.support
+         * @deprecated Will be removed in Gradle 9.0.
+         */
+        @Deprecated
+        public AndroidxLegacySupportLibraryAccessors getSupport() {
+            org.gradle.internal.deprecation.DeprecationLogger.deprecateBehaviour("Accessing libraries or bundles from version catalogs in the plugins block.").withAdvice("Only use versions or plugins from catalogs in the plugins block.").willBeRemovedInGradle9().withUpgradeGuideSection(8, "kotlin_dsl_deprecated_catalogs_plugins_block").nagUser();
+            return laccForAndroidxLegacySupportLibraryAccessors;
+        }
+
+    }
+
+    /**
+     * @deprecated Will be removed in Gradle 9.0.
+     */
+    @Deprecated
+    public static class AndroidxLegacySupportLibraryAccessors extends SubDependencyFactory {
+
+        public AndroidxLegacySupportLibraryAccessors(AbstractExternalDependencyFactory owner) { super(owner); }
+
+            /**
+             * Creates a dependency provider for v4 (androidx.legacy:legacy-support-v4)
+             * This dependency was declared in catalog libs.versions.toml
+         * @deprecated Will be removed in Gradle 9.0.
+             */
+        @Deprecated
+            public Provider<MinimalExternalModuleDependency> getV4() {
+            org.gradle.internal.deprecation.DeprecationLogger.deprecateBehaviour("Accessing libraries or bundles from version catalogs in the plugins block.").withAdvice("Only use versions or plugins from catalogs in the plugins block.").willBeRemovedInGradle9().withUpgradeGuideSection(8, "kotlin_dsl_deprecated_catalogs_plugins_block").nagUser();
+                return create("androidx.legacy.support.v4");
         }
 
     }
@@ -429,6 +514,14 @@ public class LibrariesForLibsInPluginsBlock extends AbstractExternalDependencyFa
             public Provider<String> getEspressoCore() { return getVersion("espressoCore"); }
 
             /**
+             * Returns the version associated to this alias: fragmentKtx (1.7.1)
+             * If the version is a rich version and that its not expressible as a
+             * single version string, then an empty string is returned.
+             * This version was declared in catalog libs.versions.toml
+             */
+            public Provider<String> getFragmentKtx() { return getVersion("fragmentKtx"); }
+
+            /**
              * Returns the version associated to this alias: junit (4.13.2)
              * If the version is a rich version and that its not expressible as a
              * single version string, then an empty string is returned.
@@ -451,6 +544,14 @@ public class LibrariesForLibsInPluginsBlock extends AbstractExternalDependencyFa
              * This version was declared in catalog libs.versions.toml
              */
             public Provider<String> getKotlin() { return getVersion("kotlin"); }
+
+            /**
+             * Returns the version associated to this alias: legacySupportV4 (1.0.0)
+             * If the version is a rich version and that its not expressible as a
+             * single version string, then an empty string is returned.
+             * This version was declared in catalog libs.versions.toml
+             */
+            public Provider<String> getLegacySupportV4() { return getVersion("legacySupportV4"); }
 
             /**
              * Returns the version associated to this alias: lifecycleLivedataKtx (2.7.0)

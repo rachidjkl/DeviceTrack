@@ -1,18 +1,24 @@
 package com.example.devicetrack.ui.home
 
+import Dispositivo
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.os.bundleOf
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.devicetrack.R
-import com.example.devicetrack.data.model.Dispositivos
 
-class AdapterResumenDeEquipo(private val context: Context, private val dispositivoList: List<Dispositivos>) : RecyclerView.Adapter<AdapterResumenDeEquipo.HomeViewHolder>() {
+class AdapterResumenDeEquipo(
+    private val context: Context,
+    private val dispositivoList: List<Dispositivo>,
+    private val itemClickListener: OnItemClickListener // Añade el parámetro de la interfaz
+) : RecyclerView.Adapter<AdapterResumenDeEquipo.HomeViewHolder>() {
+
+    interface OnItemClickListener {
+        fun onItemClick(dispositivo: Dispositivo)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
         val inflater = LayoutInflater.from(context)
@@ -22,7 +28,7 @@ class AdapterResumenDeEquipo(private val context: Context, private val dispositi
 
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
         val dispositivo = dispositivoList[position]
-        holder.bind(dispositivo)
+        holder.bind(dispositivo, itemClickListener) // Pasa el listener al método bind
     }
 
     override fun getItemCount(): Int {
@@ -32,10 +38,15 @@ class AdapterResumenDeEquipo(private val context: Context, private val dispositi
     inner class HomeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val tituloTextView: TextView = itemView.findViewById(R.id.tituloCard)
 
-
-        fun bind(dispositivo: Dispositivos) {
+        fun bind(dispositivo: Dispositivo, clickListener: OnItemClickListener) {
             tituloTextView.text = dispositivo.nombre
 
+            // Establece el OnClickListener en el itemView
+
+            itemView.setOnClickListener {
+                Log.d("Auth", "User: $dispositivo")
+                clickListener.onItemClick(dispositivo)
+            }
         }
     }
 }
