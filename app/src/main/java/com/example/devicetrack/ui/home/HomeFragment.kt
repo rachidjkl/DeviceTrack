@@ -68,8 +68,14 @@ class HomeFragment : Fragment() , AdapterResumenDeEquipo.OnItemClickListener{
         binding.verMasEquipos.setOnClickListener{
             findNavController().navigate(R.id.action_navigation_home_to_navigation_lista_dispositivos)
         }
+        binding.verMasEquipos2.setOnClickListener{
+            findNavController().navigate(R.id.action_navigation_home_to_navigation_lista_dispositivos)
+        }
 
 
+
+
+        //val root: View = binding.root
 
 
         binding.BtnDetails.setOnClickListener {
