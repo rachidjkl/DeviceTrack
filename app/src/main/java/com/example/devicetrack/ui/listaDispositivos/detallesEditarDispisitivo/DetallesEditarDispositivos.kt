@@ -17,6 +17,11 @@ import com.example.devicetrack.data.DispositivosRepository
 import com.example.devicetrack.data.model.Grupo
 import com.example.devicetrack.databinding.FragmentDetallesEditarDispositivosBinding
 import kotlinx.coroutines.launch
+import android.app.AlertDialog
+import android.text.InputType
+import android.widget.EditText
+import android.widget.Toast
+
 
 class DetallesEditarDispositivos : Fragment() , AdapterDetallesEditarGrupos.OnItemClickListener{
 
@@ -57,12 +62,52 @@ class DetallesEditarDispositivos : Fragment() , AdapterDetallesEditarGrupos.OnIt
                     binding.rvGrupos.adapter = adapter
                 }
             }
+        }
 
-
-
-
+        binding.verMasEquipos.setOnClickListener {
+            showConnectionMethodDialog()
         }
     }
+
+    private fun showConnectionMethodDialog() {
+        val options = arrayOf("Vía QR (Cámara)", "Vía Código")
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle("Método de Conexión")
+        builder.setItems(options) { dialog, which ->
+            when (which) {
+                0 -> {
+                    // Handle Vía QR option
+                    Toast.makeText(requireContext(), "Vía QR selected", Toast.LENGTH_SHORT).show()
+                }
+                1 -> {
+                    // Handle Vía Código option
+                    showInputCodeDialog()
+                }
+            }
+        }
+        builder.show()
+    }
+
+    private fun showInputCodeDialog() {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle("Introduce código")
+
+        // Set up the input
+        val input = EditText(requireContext())
+        input.inputType = InputType.TYPE_CLASS_TEXT
+        builder.setView(input)
+
+        // Set up the buttons
+        builder.setPositiveButton("Conectar") { dialog, which ->
+            val code = input.text.toString()
+            // Handle code input
+            Toast.makeText(requireContext(), "Código ingresado: $code", Toast.LENGTH_SHORT).show()
+        }
+        builder.setNegativeButton("Cancelar") { dialog, which -> dialog.cancel() }
+
+        builder.show()
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
