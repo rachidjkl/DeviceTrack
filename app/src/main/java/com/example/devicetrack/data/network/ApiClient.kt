@@ -38,5 +38,5 @@ interface ApiClient {
     suspend fun createUsuario_dispositivo(@Body usuario_dispositivo: Usuario_dispositivo): Usuario_dispositivo
 
     @GET("/dispositivo/{num_serie}")
-    suspend fun getDispositivoNumSerie(@Path("num_serie") num_serie:String ): Response<List<Dispositivo>>
+    suspend fun getDispositivoNumSerie(@Path("num_serie") num_serie:String ): Response<Dispositivo>
 }

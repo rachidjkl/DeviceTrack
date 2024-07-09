@@ -17,9 +17,9 @@ data class Dispositivo(
         parcel.readString() ?: "",
         parcel.readString() ?: "",
         parcel.readNullableString(),
-        parcel.readInt(),
-        parcel.readInt() ,
-        parcel.readInt()
+        parcel.readInt()?: 0,
+        parcel.readInt()?: 0,
+        parcel.readInt()?: 0
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {

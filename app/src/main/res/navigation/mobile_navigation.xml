@@ -34,7 +34,11 @@
         android:id="@+id/navigation_equipos"
         android:name="com.example.devicetrack.ui.listaDispositivos.listaDispositivo"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_lista_dispositivo" />
+        tools:layout="@layout/fragment_lista_dispositivo">
+        <action
+            android:id="@+id/action_navigation_lista_dispositivos_to_navigation_anyadir_dispositivo"
+            app:destination="@id/navigation_anyadir_dispositivo" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_grupos"

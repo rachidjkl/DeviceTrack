@@ -5,20 +5,20 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
 data class Usuario_dispositivo(
-    @SerializedName("usuario") var usuario: String,
+    @SerializedName("usuario") var usuario: Int,
     @SerializedName("dispositivo") var dispositivo: Int,
     @SerializedName("favorito") var favorito: Int,
     @SerializedName("conexion") var conexion: Int
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
-        parcel.readString() ?: "",
+        parcel.readInt() ?: 0,
         parcel.readInt() ?: 0,
         parcel.readInt() ?: 0,
         parcel.readInt() ?: 0
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(usuario)
+        parcel.writeInt(usuario)
         parcel.writeInt(dispositivo)
         parcel.writeInt(favorito)
         parcel.writeInt(conexion)
