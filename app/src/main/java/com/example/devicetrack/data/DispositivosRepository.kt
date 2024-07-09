@@ -25,7 +25,7 @@ class DispositivosRepository {
         api.postDispositivo(dispositivo)
     }
 
-    suspend fun getDispositivoNumSerie(numSerie: String) : List<Dispositivo> {
+    suspend fun getDispositivoNumSerie(numSerie: String) : Dispositivo {
         return api.getDispositivoNumSerie(numSerie)
     }
 

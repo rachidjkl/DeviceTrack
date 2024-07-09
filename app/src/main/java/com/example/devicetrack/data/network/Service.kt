@@ -52,10 +52,10 @@ class Service {
         }
     }
 
-    suspend fun getDispositivoNumSerie(numSerie: String): List<Dispositivo> {
+    suspend fun getDispositivoNumSerie(numSerie: String): Dispositivo {
         return withContext(Dispatchers.IO) {
             val response = retrofit.create(ApiClient::class.java).getDispositivoNumSerie(numSerie)
-            response.body() ?: emptyList()
+            response.body()!!
         }
     }
 }
