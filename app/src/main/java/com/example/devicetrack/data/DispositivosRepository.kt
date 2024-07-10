@@ -5,7 +5,7 @@ import com.example.devicetrack.data.model.Grupo
 import com.example.devicetrack.data.model.Usuario_dispositivo
 import com.example.devicetrack.data.network.Service
 
-class DispositivosRepository {
+class DispositivosRepository(service: Service) {
 
     private val api = Service()
 

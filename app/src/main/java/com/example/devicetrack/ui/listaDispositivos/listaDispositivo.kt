@@ -1,46 +1,65 @@
 package com.example.devicetrack.ui.listaDispositivos
 
-import androidx.fragment.app.viewModels
+import Dispositivo
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.devicetrack.R
-import com.example.devicetrack.databinding.FragmentHomeBinding
+import com.example.devicetrack.data.network.Service
 import com.example.devicetrack.databinding.FragmentListaDispositivoBinding
 import com.example.devicetrack.ui.home.AdapterResumenDeEquipo
-import com.example.devicetrack.ui.home.HomeViewModel
 
 class listaDispositivo : Fragment() {
 
     private var _binding: FragmentListaDispositivoBinding? = null
-
     private val binding get() = _binding!!
 
+    private lateinit var viewModel: ListaDispositivoViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val viewModel = ViewModelProvider(this).get(ListaDispositivoViewModel::class.java)
         _binding = FragmentListaDispositivoBinding.inflate(inflater, container, false)
+
+        // ViewModelFactory para inyectar Service en ListaDispositivoViewModel
+        val viewModelFactory = ListaDispositivoViewModelFactory(Service())
+
+        // Inicializar el ViewModel utilizando viewModels y el ViewModelFactory personalizado
+        viewModel = ViewModelProvider(this, viewModelFactory).get(ListaDispositivoViewModel::class.java)
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         viewModel.onCreate(requireContext())
         viewModel.dispositivoModel.observe(viewLifecycleOwner, Observer { listDispositivos ->
-            val adapter = AdapterListaDispositivo(requireContext(),listDispositivos!!)
-            binding.rvResumenEquipos.layoutManager = GridLayoutManager(requireContext(), 2)
-            binding.rvResumenEquipos.adapter = adapter
-        })
-        viewModel.isLoading.observe(viewLifecycleOwner, Observer {
-            //binding.progressBar.isVisible = it
+            // Configurar el adaptador solo si la lista de dispositivos no es nula
+            listDispositivos?.let {
+                val adapter = AdapterResumenDeEquipo(requireContext(), it, object : AdapterResumenDeEquipo.OnItemClickListener {
+                    override fun onItemClick(dispositivo: Dispositivo) {
+                        // Implementa la lógica para manejar el clic en el dispositivo aquí
+                    }
+
+                    override fun onItemLongClick(dispositivo: Dispositivo) {
+                        // Implementa la lógica para manejar el clic largo en el dispositivo aquí
+                    }
+                })
+                binding.rvResumenEquipos.layoutManager = GridLayoutManager(requireContext(), 2)
+                binding.rvResumenEquipos.adapter = adapter
+            }
         })
 
         binding.btnBack.setOnClickListener {
@@ -50,8 +69,6 @@ class listaDispositivo : Fragment() {
         binding.dispoAdd.setOnClickListener {
             findNavController().navigate(R.id.action_navigation_lista_dispositivos_to_navigation_anyadir_dispositivo)
         }
-
-        return binding.root
     }
 
     override fun onDestroyView() {

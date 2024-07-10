@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.devicetrack.R
 import com.example.devicetrack.databinding.FragmentHomeBinding
+import com.example.devicetrack.ui.HomeViewModel
 
 class HomeFragment : Fragment(), AdapterResumenDeEquipo.OnItemClickListener {
 

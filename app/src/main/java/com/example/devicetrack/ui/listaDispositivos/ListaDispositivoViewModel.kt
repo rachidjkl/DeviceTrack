@@ -7,32 +7,28 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.devicetrack.data.DispositivosRepository
+import com.example.devicetrack.data.network.Service
 import kotlinx.coroutines.launch
 
-class ListaDispositivoViewModel : ViewModel() {
+class ListaDispositivoViewModel(private val service: Service) : ViewModel() {
     val dispositivoModel = MutableLiveData<List<Dispositivo>?>()
     val dispositivoFavModel = MutableLiveData<List<Dispositivo>?>()
     val isLoading = MutableLiveData<Boolean>()
-    val dispositivosRepo = DispositivosRepository()
-
+    val dispositivosRepo = DispositivosRepository(service)
 
     fun onCreate(context: Context) {
         viewModelScope.launch {
-            //recuperamos idUsuario
+            // Recuperamos idUsuario
             val sharedPreferences: SharedPreferences = context.getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
             val idUser = sharedPreferences.getString("idUser", null).toString()
             isLoading.postValue(true)
-            var result = emptyList<Dispositivo>()
-            result = dispositivosRepo.getAllDispositivos(idUser)
+            val result = dispositivosRepo.getAllDispositivos(idUser)
 
-            if(!result.isNullOrEmpty()){
+            if (!result.isNullOrEmpty()) {
                 dispositivoModel.postValue(result)
                 isLoading.postValue(false)
             }
 
-            var result2 = emptyList<Dispositivo>()
-            //result2 = dispositivosRepo.getAllDispositivosFav()
-            dispositivoFavModel.postValue(result2)
         }
     }
 }

@@ -44,13 +44,13 @@ class AdapterResumenDeEquipo(
 
             // Establece el OnClickListener en el itemView
             itemView.setOnClickListener {
-                Log.d("Auth", "Clicked on: $dispositivo")
+                Log.d("Auth", "Clicked on: ${dispositivo.nombre}")
                 clickListener.onItemClick(dispositivo)
             }
 
             // Establece el OnLongClickListener en el itemView
             itemView.setOnLongClickListener {
-                Log.d("Auth", "Long Clicked on: $dispositivo")
+                Log.d("Auth", "Long Clicked on: ${dispositivo.nombre}")
                 clickListener.onItemLongClick(dispositivo)
                 true
             }
