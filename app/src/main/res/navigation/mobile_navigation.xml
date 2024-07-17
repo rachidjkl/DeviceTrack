@@ -42,7 +42,7 @@
 
     <fragment
         android:id="@+id/navigation_grupos"
-        android:name="com.example.devicetrack.ui.grupos.grupos"
+        android:name="com.example.devicetrack.ui.grupos.GruposFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_grupos" />
 
@@ -64,7 +64,7 @@
 
     <fragment
         android:id="@+id/navigation_anyadir_dispositivo"
-        android:name="com.example.devicetrack.ui.listaDispositivos.añadirDispositivos.AnyadirDispositivo"
+        android:name="com.example.devicetrack.ui.listaDispositivos.añadirDispositivos.AñadirDispositivo"
         android:label="Dispositivo"
         tools:layout="@layout/fragment_anyadir_dispositivo" >
         <action

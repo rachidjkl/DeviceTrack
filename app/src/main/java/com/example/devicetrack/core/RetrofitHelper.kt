@@ -7,7 +7,7 @@ object RetrofitHelper {
 
     fun getRetrofit(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("http://10.0.2.2:3000")
+            .baseUrl("https://apidevicetrack.loca.lt/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }

@@ -21,13 +21,14 @@ import android.app.AlertDialog
 import android.text.InputType
 import android.widget.EditText
 import android.widget.Toast
+import com.example.devicetrack.data.network.Service
 
 
 class DetallesEditarDispositivos : Fragment() , AdapterDetallesEditarGrupos.OnItemClickListener{
 
 
 
-    val dispositivoRepo = DispositivosRepository()
+    private val dispositivoRepo by lazy { DispositivosRepository(Service()) }
 
 
     private var _binding: FragmentDetallesEditarDispositivosBinding? = null
