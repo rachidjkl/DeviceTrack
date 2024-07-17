@@ -39,4 +39,7 @@ interface ApiClient {
 
     @GET("/dispositivo/{num_serie}")
     suspend fun getDispositivoNumSerie(@Path("num_serie") num_serie:String ): Response<Dispositivo>
+    @GET("/dispositivo/{id}")
+    suspend fun getDispositivoById(@Path("id") id: Int): Response<Dispositivo>
+
 }

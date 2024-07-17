@@ -9,7 +9,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.devicetrack.R
 import com.example.devicetrack.data.model.Grupo
-import com.example.devicetrack.ui.home.AdapterResumenDeEquipo
 
 class AdapterDetallesEditarGrupos(
         private val context: Context,

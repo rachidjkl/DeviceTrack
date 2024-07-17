@@ -60,6 +60,15 @@
         <action
             android:id="@+id/action_navigation_lista_dispositivos_to_navigation_detalle_equipo_fragment"
             app:destination="@id/navigation_detalle_equipo_fragment" />
+        <action
+            android:id="@+id/action_navigation_lista_dispositivos_to_navigation_detalles_editar_equipo2"
+            app:destination="@id/navigation_detalles_editar_equipo" />
+        <action
+            android:id="@+id/action_navigation_lista_dispositivos_to_navigation_detalle_equipo_fragment2"
+            app:destination="@id/navigation_detalle_equipo_fragment" />
+        <action
+            android:id="@+id/action_navigation_lista_dispositivos_to_navigation_anyadir_dispositivo2"
+            app:destination="@id/navigation_anyadir_dispositivo" />
     </fragment>
 
     <fragment
@@ -94,6 +103,9 @@
         <action
             android:id="@+id/action_navigation_detalle_equipo_fragment_to_navigation_limiezap_fragment"
             app:destination="@id/navigation_limiezap_fragment" />
+        <action
+            android:id="@+id/action_navigation_detalle_equipo_fragment_self"
+            app:destination="@id/navigation_detalle_equipo_fragment" />
     </fragment>
     <fragment
         android:id="@+id/navigation_alerta_fragment"

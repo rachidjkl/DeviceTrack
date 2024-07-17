@@ -32,4 +32,9 @@ class DispositivosRepository(service: Service) {
     suspend fun createUsuario_dispositivo(usuario_dispositivo: Usuario_dispositivo){
         api.createUsuario_dispositivo(usuario_dispositivo)
     }
+    suspend fun getDispositivoById(id: Int): Dispositivo? {
+        return api.getDispositivoById(id)
+    }
+
+
 }

@@ -1,14 +1,12 @@
+// listaDispositivo.kt
 package com.example.devicetrack.ui.listaDispositivos
 
 import Dispositivo
-import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -26,16 +24,12 @@ class listaDispositivo : Fragment() {
     private lateinit var viewModel: ListaDispositivoViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentListaDispositivoBinding.inflate(inflater, container, false)
 
-        // ViewModelFactory para inyectar Service en ListaDispositivoViewModel
         val viewModelFactory = ListaDispositivoViewModelFactory(Service())
-
-        // Inicializar el ViewModel utilizando viewModels y el ViewModelFactory personalizado
         viewModel = ViewModelProvider(this, viewModelFactory).get(ListaDispositivoViewModel::class.java)
 
         return binding.root
@@ -46,15 +40,17 @@ class listaDispositivo : Fragment() {
 
         viewModel.onCreate(requireContext())
         viewModel.dispositivoModel.observe(viewLifecycleOwner, Observer { listDispositivos ->
-            // Configurar el adaptador solo si la lista de dispositivos no es nula
             listDispositivos?.let {
                 val adapter = AdapterResumenDeEquipo(requireContext(), it, object : AdapterResumenDeEquipo.OnItemClickListener {
                     override fun onItemClick(dispositivo: Dispositivo) {
-                        // Implementa la lógica para manejar el clic en el dispositivo aquí
+                        val bundle = Bundle().apply {
+                            putInt("dispositivoId", dispositivo.Id_dispositivo)
+                        }
+                        findNavController().navigate(R.id.action_navigation_lista_dispositivos_to_navigation_detalle_equipo_fragment2, bundle)
                     }
 
                     override fun onItemLongClick(dispositivo: Dispositivo) {
-                        // Implementa la lógica para manejar el clic largo en el dispositivo aquí
+                        TODO("Not yet implemented")
                     }
                 })
                 binding.rvResumenEquipos.layoutManager = GridLayoutManager(requireContext(), 2)
@@ -67,7 +63,7 @@ class listaDispositivo : Fragment() {
         }
 
         binding.dispoAdd.setOnClickListener {
-            findNavController().navigate(R.id.action_navigation_lista_dispositivos_to_navigation_anyadir_dispositivo)
+            findNavController().navigate(R.id.action_navigation_lista_dispositivos_to_navigation_anyadir_dispositivo2)
         }
     }
 

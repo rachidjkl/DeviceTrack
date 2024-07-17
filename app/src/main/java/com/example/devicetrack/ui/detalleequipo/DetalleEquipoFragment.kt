@@ -1,24 +1,31 @@
+// DetalleEquipoFragment.kt
 package com.example.devicetrack.ui.detalleequipo
 
+import Dispositivo
 import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import com.example.devicetrack.data.DispositivosRepository
+import com.example.devicetrack.data.network.Service
 import com.example.devicetrack.databinding.DialogCleaningCompletedBinding
 import com.example.devicetrack.databinding.DialogCleaningConfirmationBinding
 import com.example.devicetrack.databinding.FragmentDetalleEquipoBinding
+import kotlinx.coroutines.launch
 
 class DetalleEquipoFragment : Fragment() {
 
     private var _binding: FragmentDetalleEquipoBinding? = null
     private val binding get() = _binding!!
+    private val dispositivoRepo by lazy { DispositivosRepository(Service()) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentDetalleEquipoBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -26,9 +33,22 @@ class DetalleEquipoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val dispositivoId = arguments?.getInt("dispositivoId") ?: return
+
+        lifecycleScope.launch {
+            val dispositivo = dispositivoRepo.getDispositivoById(dispositivoId)
+            dispositivo?.let { showDispositivoDetails(it) }
+        }
+
         binding.btnRealizarLimpieza.setOnClickListener {
             showCleaningConfirmationDialog()
         }
+    }
+
+    private fun showDispositivoDetails(dispositivo: Dispositivo) {
+        binding.tvNombreEquipo.text = dispositivo.nombre
+        binding.tvStatus.text = if (dispositivo.conexion == 1) "🟢" else "🔴"
+
     }
 
     private fun showCleaningConfirmationDialog() {
