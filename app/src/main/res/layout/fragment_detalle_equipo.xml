@@ -22,7 +22,7 @@
                 android:id="@+id/iv_icon"
                 android:layout_width="48dp"
                 android:layout_height="match_parent"
-                android:background="@drawable/ic_launcher_background" />
+                android:background="@drawable/impresora_placeholder" />
 
             <LinearLayout
                 android:layout_width="0dp"

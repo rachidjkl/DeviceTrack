@@ -1,5 +1,6 @@
 package com.example.devicetrack.ui.detalleequipo
 
+import Dispositivo
 import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -25,6 +26,12 @@ class DetalleEquipoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        arguments?.let {
+
+            val dispositivo = it.getParcelable<Dispositivo>("dispositivo")
+            binding.tvNombreEquipo.text = dispositivo?.nombre
+
+        }
 
         binding.btnRealizarLimpieza.setOnClickListener {
             showCleaningConfirmationDialog()
