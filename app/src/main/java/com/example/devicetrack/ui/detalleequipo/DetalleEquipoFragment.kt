@@ -32,6 +32,12 @@ class DetalleEquipoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        arguments?.let {
+
+            val dispositivo = it.getParcelable<Dispositivo>("dispositivo")
+            binding.tvNombreEquipo.text = dispositivo?.nombre
+
+        }
 
         val dispositivoId = arguments?.getInt("dispositivoId") ?: return
 
