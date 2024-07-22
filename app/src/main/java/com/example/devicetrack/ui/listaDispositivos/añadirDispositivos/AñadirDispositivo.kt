@@ -94,13 +94,13 @@ class AñadirDispositivo : Fragment() {
 
             // Crear dispositivo
             val dispositivo = Dispositivo(
-                Id_dispositivo = 0,  // assuming a new device starts with ID 0 or change as needed
+                Id_dispositivo = 0,
                 nombre = nombre,
                 numero_serie = numeroSerie,
                 imagen = "",  // default empty image or change as needed
                 favorito = 0,  // default not favorite
-                conexion = 0,  // default not connected
-                codigo_conexion = 0  // default no connection code
+                conexion = 0,
+                codigo_conexion = 0
             )
 
             // Guardar dispositivo en ViewModel
